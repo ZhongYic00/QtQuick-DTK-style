@@ -9,9 +9,10 @@
 #include <QDesktopWidget>
 #include <QScreen>
 #include <QGraphicsEffect>
-
 #include <QLocale>
 #include <QTranslator>
+#include <QDir>
+#include "include/qtquickdtk.h"
 
 DWIDGET_USE_NAMESPACE
 int main(int argc, char* argv[])
@@ -22,7 +23,8 @@ int main(int argc, char* argv[])
 
     DApplication app(argc,argv);
 
-    app.setApplicationName("hello world");
+    app.setApplicationName("QtQuick DTK");
+
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -37,24 +39,27 @@ int main(int argc, char* argv[])
     DMainWindow win;
     QQuickWidget widget;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    widget.engine()->rootContext()->setContextProperty("smallRadius",8);
-    widget.engine()->rootContext()->setContextProperty("bigRadius",18);
-    const auto setColorGroup = [&](const QPalette& p){
-        const char *colorGroupNames[] = {"Active", "Disabled", "Inactive", "NColorGroups", "Current", "All", "Normal"};
-        QString cg=colorGroupNames[DPalette::ColorGroup(p.currentColorGroup())];
-        std::cerr<<cg.toStdString();
-        widget.engine()->rootContext()->setContextProperty("globalColorGroup",cg);
-        widget.engine()->rootContext()->setContextProperty("dpaletteLightStyle",DGuiApplicationHelper::instance()->themeType()==DGuiApplicationHelper::LightType);
-    };
-    setColorGroup(QApplication::palette());
-    QObject::connect(&app,&DApplication::paletteChanged,setColorGroup);
-//    QObject::connect(&app,&DApplication::focusWindowChanged,setColorGroup1);
 //    auto desktop = DApplication::desktop()->screen();
 //    desktop->setGraphicsEffect(new QGraphicsBlurEffect);
 //    widget.setGraphicsEffect(new QGraphicsBlurEffect);
+    enableQtQuickDTKStyle(widget.engine());
     widget.setSource(url);
     widget.setResizeMode(QQuickWidget::SizeRootObjectToView);
     win.setCentralWidget(&widget);
+
+    WId proc2Window_HWND = WId(23069566);
+    //TODO: create the proc 1 window delegate
+    QWindow* proc1Widow = QWindow::fromWinId(proc2Window_HWND);
+
+    //TODO: set the proxy widnow handle to proc 2 window
+    win.setProperty("_q_embedded_native_parent_handle",QVariant(proc2Window_HWND));
+
+    //TODO: set the proxy window to proc2 window for parent
+    win.winId();
+    //win.windowHandle()->setParent(proc1Widow);
+    win.resize(1920,1040);
+    win.move(0,0);
+
     win.show();
 
     return app.exec();
