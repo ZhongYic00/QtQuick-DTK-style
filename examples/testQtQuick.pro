@@ -1,4 +1,4 @@
-QT += quick
+QT += quick quickcontrols2
 
 CONFIG += c++11
 
@@ -9,7 +9,8 @@ CONFIG += c++11
 SOURCES += \
         main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    resources/dtk.qrc
 
 TRANSLATIONS += \
     testQtQuick_zh_CN.ts
@@ -27,3 +28,6 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    qtquickdtk.h
