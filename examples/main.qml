@@ -158,10 +158,16 @@ Rectangle {
             RowLayout {
                 ComboBox {
                     id: combo
-                    model: ["First", "Second", "Third", "4", "5", "666666666666666666666666666", "7", "First", "Second", "Third", "4", "5", "666666666666666666666666666", "7", "First", "Second", "Third", "4", "5", "666666666666666666666666666", "7"]
+                    model: ["First", "Second", "Third", "4", "5", "666666666666666666666666666", "7", "First", "Second", "Third", "4", "5", "666666666666666666666666666", "7", "First"]
                     Layout.preferredWidth: parent.parent.width / 2
                     Layout.alignment: Qt.AlignRight
                 }
+                //                ComboBox {
+                //                    id: combo1
+                //                    model: ["First", "Second", "Third", "4", "5"]
+                //                    Layout.preferredWidth: parent.parent.width / 2
+                //                    Layout.alignment: Qt.AlignRight
+                //                }
                 Layout.alignment: Qt.AlignRight
             }
         }
@@ -209,7 +215,15 @@ Rectangle {
         }
         TextField {
             placeholderText: "0ssssssssssssssss0"
+            ToolTip.text: "test tip"
+            ToolTip.visible: hovered
         }
+        Label {
+            text: qsTr("hello")
+            color: dpalette.windowText
+            //palette: dpalette
+        }
+        Dial {}
     }
 
     //    CheckBox {

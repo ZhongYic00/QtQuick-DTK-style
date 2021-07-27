@@ -26,7 +26,18 @@ T.TabBar {
             icon.name: "go-previous"
             enabled: view.contentX > view.originX
             visible: view.contentWidth > view.width
-            onPressed: view.moveViewContent(-30)
+            Timer {
+                id: timerL
+                interval: 50
+                repeat: true
+                onTriggered: function () {
+                    if (parent.pressed) {
+                        view.moveViewContent(-30)
+                    } else
+                        timerL.stop()
+                }
+            }
+            onPressed: timerL.start()
         }
         ListView {
             function moveViewContent(x) {
@@ -62,8 +73,8 @@ T.TabBar {
             MouseArea {
                 anchors.fill: parent
                 onWheel: {
-                    console.error("view", parent.contentX, parent.contentWidth,
-                                  parent.width, parent.originX)
+                    //                    console.error("view", parent.contentX, parent.contentWidth,
+                    //                                  parent.width, parent.originX)
                     let scrollSpeed = 30
                     if (wheel.angleDelta.y > 0) {
                         decrementCurrentIndex()
@@ -85,7 +96,18 @@ T.TabBar {
             icon.name: "go-next"
             enabled: view.contentX < view.originX + view.contentWidth - view.width
             visible: view.contentWidth > view.width
-            onPressed: view.moveViewContent(30)
+            Timer {
+                id: timerR
+                interval: 50
+                repeat: true
+                onTriggered: function () {
+                    if (parent.pressed) {
+                        view.moveViewContent(30)
+                    } else
+                        timerR.stop()
+                }
+            }
+            onPressed: timerR.start()
         }
     }
 
