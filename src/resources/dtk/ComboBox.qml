@@ -1,12 +1,14 @@
 import QtQuick 2.15
+import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtGraphicalEffects 1.15
 
 T.ComboBox {
     id: control
-    property int itemHeight: 0
+    property int itemHeight: height
     property bool blockHighlight: false
+    property int windowHeight: 800
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(
@@ -49,7 +51,9 @@ T.ComboBox {
             }
 
             Component.onCompleted: {
-                control.itemHeight = height
+                //control.itemHeight = height
+                height = control.itemHeight
+                console.error("itemHeight", control.itemHeight)
             }
         }
         highlighted: (blockHighlight ? control.currentIndex : control.highlightedIndex) === index
@@ -110,14 +114,20 @@ T.ComboBox {
         border.width: 2
     }
 
-    popup: Popup {
+    popup: T.Popup {
+        id: popup
         width: control.width
-        implicitHeight: contentItem.implicitHeight + 2 * smallRadius
-        padding: 1
+        height: Math.min(contentItem.implicitHeight + 2 * smallRadius,
+                         control.Window.height - topMargin - bottomMargin)
+        padding: 0
+        topMargin: 6
+        bottomMargin: topMargin
 
         contentItem: ListView {
             clip: true
             implicitHeight: contentHeight
+            height: Math.min(contentHeight, popup.height - 2 * smallRadius)
+            y: (popup.height - height) / 2
             model: control.delegateModel
             currentIndex: control.highlightedIndex
             topMargin: smallRadius
@@ -136,26 +146,51 @@ T.ComboBox {
                 transparentBorder: true
             }
         }
+        property bool transEnabled: mapFromGlobal(0, control.Window.height).y
+                                    - popup.bottomMargin - height >= -smallRadius
+                                    && mapFromGlobal(
+                                        0,
+                                        0).y + topMargin <= -height + smallRadius
         enter: Transition {
             NumberAnimation {
                 property: "y"
-                from: 0
-                to: -(smallRadius + control.currentIndex * control.itemHeight)
+                from: popup.transEnabled ? 0 : mapFromGlobal(
+                                               0, control.Window.height).y
+                                           - popup.bottomMargin - height
+                to: popup.transEnabled ? (control.Window.height - popup.topMargin - popup.bottomMargin > height) ? Math.min(Math.max(-(smallRadius + control.currentIndex * control.itemHeight), mapFromGlobal(0, 0).y + popup.topMargin), mapFromGlobal(0, control.Window.height).y - popup.bottomMargin - height) : Math.min(Math.max(0, mapFromGlobal(0, 0).y + popup.topMargin), mapFromGlobal(0, control.Window.height).y - popup.bottomMargin - height) : 0
                 duration: 200
                 easing.type: Easing.InOutQuad
+            }
+            PropertyAnimation {
+                property: "opacity"
+                from: 0
+                to: 1
+                duration: 150
             }
         }
         Timer {
             id: timer
         }
         onAboutToShow: {
-            blockHighlight = true
             timer.interval = 200
             timer.repeat = false
             timer.triggered.connect(function () {
                 blockHighlight = false
+                //                console.error(
+                //                            "from", mapFromGlobal(
+                //                                0,
+                //                                control.Window.height).y - bottomMargin - height)
+                //                console.error(
+                //                            "to", control.Window.height
+                //                            - popup.topMargin - popup.bottomMargin > height, y,
+                //                            (control.Window.height - popup.topMargin
+                //                             - popup.bottomMargin > height) ? Math.min(
+                //                                                                  Math.max(-(smallRadius + control.currentIndex * control.itemHeight), mapFromGlobal(0, 0).y + popup.topMargin), mapFromGlobal(0, control.Window.height).y - popup.bottomMargin - height) : 0)
             })
-            timer.start()
+            if (transEnabled) {
+                blockHighlight = true
+                timer.start()
+            }
         }
     }
 }
