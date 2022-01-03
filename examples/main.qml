@@ -3,16 +3,13 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.15
+import QMLDPalette 1.0
 
 //import DGui 1.0
 Rectangle {
     color: dpalette.base
-    SystemPalette {
+    QMLDPalette {
         id: dpalette
-        colorGroup: SystemPalette.Active
-        property color lightLively: Qt.lighter(highlight, 4 / 3)
-        property color darkLively: Qt.lighter(highlight, 11 / 10)
-        property color textWarning: Qt.darker(highlight, 10 / 9)
     }
     //    //    property int smallRadius: 8
     //    //    property int bigRadius: 18
@@ -136,7 +133,7 @@ Rectangle {
                     color: dpalette.textWarning
                 }
                 RadioButton {
-                    color: dpalette.obviousBackgRadio
+                    color: dpalette.obviousBackground
                 }
                 RadioButton {
                     color: dpalette.frameShadowBorder
