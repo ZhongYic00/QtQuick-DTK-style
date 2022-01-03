@@ -8,9 +8,11 @@ T.TextField {
     DPalette {
         id: dpalette
     }
-    implicitWidth: implicitBackgroundWidth + leftInset + rightInset || Math.max(
-                       contentWidth,
-                       placeholder.implicitWidth) + leftPadding + rightPadding
+    implicitWidth: Math.max(
+                       implicitBackgroundWidth + leftInset + rightInset,
+                       Math.max(
+                           contentWidth,
+                           placeholder.implicitWidth) + leftPadding + rightPadding)
     implicitHeight: Math.max(
                         implicitBackgroundHeight + topInset + bottomInset,
                         contentHeight + topPadding + bottomPadding,
@@ -59,6 +61,7 @@ T.TextField {
         anchors.rightMargin: 10
         opacity: placeholder.visible ? 0 : 1
         icon.name: "cancel"
+        color: dpalette.base
         Behavior on opacity {
             NumberAnimation {
                 duration: 150

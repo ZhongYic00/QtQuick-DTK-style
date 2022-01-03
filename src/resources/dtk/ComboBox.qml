@@ -28,7 +28,7 @@ T.ComboBox {
         width: ListView.view.width
         contentItem: Rectangle {
             anchors.fill: parent
-            color: parent.highlighted ? dpalette.primary : "transparent"
+            color: parent.highlighted ? dpalette.highlight : "transparent"
 
             Image {
                 id: img
@@ -110,7 +110,7 @@ T.ComboBox {
         anchors.fill: parent
         radius: smallRadius
         color: control.hovered ? dpalette.dark : dpalette.light
-        border.color: dpalette.frameShadowBorder
+        border.color: dpalette.dark
         border.width: 2
     }
 

@@ -8,7 +8,7 @@ T.ToolTip {
     id: control
 
     x: parent ? (parent.width - implicitWidth) / 2 : 0
-    y: implicitHeight + 3
+    y: (parent ? parent.height : 0) + 3
 
     implicitWidth: Math.min(
                        Math.max(
@@ -45,11 +45,11 @@ T.ToolTip {
         text: control.text
         elide: Text.ElideRight
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        maximumLineCount: 3
+        //        maximumLineCount: 3
         color: dpalette.text
-        onWidthChanged: console.error(control.parent, "width", width,
-                                      implicitWidth, contentWidth,
-                                      control.width)
+        onWidthChanged: ; /*console.error(control.parent, "width", width,
+                                              implicitWidth, contentWidth,
+                                                                                    control.width)*/
     }
 
     background: Rectangle {

@@ -28,7 +28,7 @@ T.Slider {
         implicitWidth: 22
         implicitHeight: 26
         radius: smallRadius
-        color: control.pressed ? dpalette.lightLively : dpalette.primary
+        color: control.pressed ? dpalette.lightLively : dpalette.highlight
     }
 
     background: Row {
@@ -43,7 +43,7 @@ T.Slider {
             Rectangle {
                 width: backgroundDotWidth
                 height: width * 2
-                color: (index < control.value * segs) ? dpalette.primary : dpalette.button
+                color: (index < control.value * segs) ? dpalette.highlight : dpalette.button
                 radius: 1
                 //                Component.onCompleted: console.error("slider", index, segs,
                 //                                                     index / parent.count)

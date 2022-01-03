@@ -44,7 +44,7 @@ T.Button {
         Rectangle {
             radius: smallRadius
             anchors.fill: parent
-            color: dpalette.primary
+            color: dpalette.highlight
             opacity: control.down ? 0.2 : 0
             Behavior on opacity {
                 NumberAnimation {

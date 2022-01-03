@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>dtk/ComboBox.qml</file>
         <file>dtk/LCDDigit.qml</file>
         <file>dtk/SpinBox.qml</file>
         <file>dtk/TabBar.qml</file>
@@ -16,5 +15,7 @@
         <file>dtk/Switch.qml</file>
         <file>dtk/Pane.qml</file>
         <file>dtk/LCDNumber.qml</file>
+        <file>dtk/ToolTip.qml</file>
+        <file>dtk/ComboBox.qml</file>
     </qresource>
 </RCC>

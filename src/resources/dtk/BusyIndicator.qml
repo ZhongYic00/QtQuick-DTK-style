@@ -43,7 +43,7 @@ T.BusyIndicator {
                     implicitWidth: item.width / 5
                     implicitHeight: implicitWidth
                     radius: implicitWidth / 2
-                    color: dpalette.primary
+                    color: dpalette.highlight
                     transform: [
                         Translate {
                             y: -Math.min(item.width, item.height) * 0.5 + 5

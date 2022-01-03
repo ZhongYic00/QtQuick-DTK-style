@@ -21,7 +21,7 @@ T.Switch {
             width: 30
             height: parent.height
             radius: smallRadius - 1
-            color: control.checked ? dpalette.primary : dpalette.buttonText
+            color: control.checked ? dpalette.highlight : dpalette.buttonText
             Behavior on x {
                 NumberAnimation {
                     //This specifies how long the animation takes

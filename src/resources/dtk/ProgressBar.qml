@@ -40,7 +40,7 @@ T.ProgressBar {
             height: parent.height
             radius: control.radius
             clip: true
-            color: dpalette.primary
+            color: dpalette.highlight
             gradient: Gradient {
                 orientation: Gradient.Horizontal
                 GradientStop {
@@ -55,7 +55,7 @@ T.ProgressBar {
         }
         Rectangle {
             height: parent.height
-            color: dpalette.primary
+            color: dpalette.highlight
             gradient: Gradient {
                 orientation: Gradient.Horizontal
                 GradientStop {

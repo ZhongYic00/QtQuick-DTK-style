@@ -13,6 +13,7 @@ T.TabBar {
                              contentHeight + topPadding + bottomPadding)
 
     spacing: smallRadius
+    property bool isScrollEnabled: true
     DPalette {
         id: dpalette
     }
@@ -72,6 +73,7 @@ T.TabBar {
             contentWidth: contentItem.childrenRect.width
             MouseArea {
                 anchors.fill: parent
+                enabled: control.isScrollEnabled
                 onWheel: {
                     //                    console.error("view", parent.contentX, parent.contentWidth,
                     //                                  parent.width, parent.originX)
