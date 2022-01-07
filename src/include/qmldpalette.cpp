@@ -8,18 +8,20 @@ DWIDGET_USE_NAMESPACE
 DGUI_USE_NAMESPACE
 QMLDPalette::QMLDPalette()
 {
-    const auto updateCg=[this](){
-        cg=(QApplication::activeWindow()!=nullptr)?DPalette::Active:DPalette::Inactive;
-        emitAll();
-    };
-    const auto updatePalette=[this](){
-        palette=DGuiApplicationHelper::instance()->applicationPalette();
-        emitAll();
-    };
-    connect(dynamic_cast<DApplication*>(DApplication::instance()),&QApplication::focusWindowChanged,updateCg);
-    connect(dynamic_cast<QApplication*>(QApplication::instance()),&QApplication::paletteChanged,updatePalette);
+    connect(dynamic_cast<DApplication*>(DApplication::instance()),&QApplication::focusWindowChanged,this,&QMLDPalette::updateCg);
+    connect(dynamic_cast<QApplication*>(QApplication::instance()),&QApplication::paletteChanged,this,&QMLDPalette::updatePalette);
     updateCg();
     updatePalette();
+}
+void QMLDPalette::updateCg(){
+//    qWarning()<<"updateCg"<<this;
+    cg=(QApplication::activeWindow()!=nullptr)?DPalette::Active:DPalette::Inactive;
+    emitAll();
+}
+void QMLDPalette::updatePalette(){
+//    qWarning()<<"updatePalette"<<this;
+    palette=DGuiApplicationHelper::instance()->applicationPalette();
+    emitAll();
 }
 void QMLDPalette::emitAll(){
     emit styleChanged();

@@ -113,6 +113,9 @@ signals:
     void obviousBackgroundChanged();
     void NColorTypesChanged();
     void styleChanged();
+public slots:
+    void updateCg();
+    void updatePalette();
 private:
     DPalette palette;
     DPalette::ColorGroup cg;
