@@ -6,6 +6,7 @@ T.BusyIndicator {
     id: control
     width: 64
     height: 64
+    property int dots: 6
     DPalette {
         id: dpalette
     }
@@ -35,7 +36,7 @@ T.BusyIndicator {
 
             Repeater {
                 id: repeater
-                model: 6
+                model: control.dots
 
                 Rectangle {
                     x: item.width / 2 - width / 2
