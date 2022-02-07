@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
+import singleton.dpalette 1.0
 
 T.TabButton {
     id: control
@@ -15,14 +16,12 @@ T.TabButton {
     horizontalPadding: smallRadius
     verticalPadding: smallRadius / 2
     Component.onCompleted: width = Math.min(width, 120)
-    DPalette {
-        id: dpalette
-    }
+
     icon.width: 24
     icon.height: 24
     icon.color: control.checked
-                || control.highlighted ? dpalette.highlightedText : control.flat
-                                         && !control.down ? (control.visualFocus ? dpalette.highlight : dpalette.windowText) : control.down ? dpalette.highlight : dpalette.buttonText
+                || control.highlighted ? DPalette.highlightedText : control.flat
+                                         && !control.down ? (control.visualFocus ? DPalette.highlight : DPalette.windowText) : control.down ? DPalette.highlight : DPalette.buttonText
 
     contentItem: IconLabel {
         spacing: control.spacing
@@ -34,14 +33,14 @@ T.TabButton {
         text: control.text
         font: control.font
         color: control.checked
-               || control.highlighted ? dpalette.highlightedText : control.flat
-                                        && !control.down ? (control.visualFocus ? dpalette.highlight : dpalette.windowText) : control.down ? dpalette.highlight : dpalette.buttonText
+               || control.highlighted ? DPalette.highlightedText : control.flat
+                                        && !control.down ? (control.visualFocus ? DPalette.highlight : DPalette.windowText) : control.down ? DPalette.highlight : DPalette.buttonText
     }
     background: Rectangle {
         radius: smallRadius
         color: Color.blend(
-                   control.checked ? dpalette.highlight : dpalette.dark,
-                   dpalette.mid, control.down ? 0.5 : 0.0)
+                   control.checked ? DPalette.highlight : DPalette.dark,
+                   DPalette.mid, control.down ? 0.5 : 0.0)
         Rectangle {
             radius: smallRadius
             anchors.fill: parent

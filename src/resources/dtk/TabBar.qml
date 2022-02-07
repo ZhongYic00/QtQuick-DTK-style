@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Templates 2.12 as T
+import singleton.dpalette 1.0
 
 T.TabBar {
     id: control
@@ -14,9 +15,6 @@ T.TabBar {
 
     spacing: smallRadius
     property bool isScrollEnabled: true
-    DPalette {
-        id: dpalette
-    }
 
     contentItem: RowLayout {
         Component.onCompleted: console.error("row", width, height, x, y)
@@ -114,6 +112,6 @@ T.TabBar {
     }
 
     background: Rectangle {
-        color: dpalette.base
+        color: DPalette.base
     }
 }

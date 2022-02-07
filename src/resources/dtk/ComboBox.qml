@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtGraphicalEffects 1.15
+import singleton.dpalette 1.0
 
 T.ComboBox {
     id: control
@@ -21,14 +22,11 @@ T.ComboBox {
     rightPadding: padding + (control.mirrored || !indicator
                              || !indicator.visible ? 0 : indicator.width + spacing)
 
-    DPalette {
-        id: dpalette
-    }
     delegate: ItemDelegate {
         width: ListView.view.width
         contentItem: Rectangle {
             anchors.fill: parent
-            color: parent.highlighted ? dpalette.highlight : "transparent"
+            color: parent.highlighted ? DPalette.highlight : "transparent"
 
             Image {
                 id: img
@@ -44,7 +42,7 @@ T.ComboBox {
                 anchors.verticalCenter: parent.verticalCenter
                 leftPadding: img.width
                 text: modelData
-                color: highlighted ? "white" : dpalette.buttonText
+                color: highlighted ? "white" : DPalette.buttonText
                 font: control.font
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
@@ -74,7 +72,7 @@ T.ComboBox {
             }
         }
         Connections {
-            target: dpalette
+            target: DPalette
             function onStyleChanged() {
                 canvas.requestPaint()
             }
@@ -82,7 +80,7 @@ T.ComboBox {
 
         onPaint: {
             context.reset()
-            context.strokeStyle = dpalette.text
+            context.strokeStyle = DPalette.text
             context.lineCap = "round"
             context.lineWidth = 1.5
             context.moveTo(width * 0.1, height * 0.25)
@@ -97,7 +95,7 @@ T.ComboBox {
         rightPadding: control.indicator.width + control.spacing
         text: control.displayText
         font: control.font
-        color: dpalette.buttonText
+        color: DPalette.buttonText
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
     }
@@ -109,8 +107,8 @@ T.ComboBox {
         implicitHeight: 40
         anchors.fill: parent
         radius: smallRadius
-        color: control.hovered ? dpalette.dark : dpalette.light
-        border.color: dpalette.dark
+        color: control.hovered ? DPalette.dark : DPalette.light
+        border.color: DPalette.dark
         border.width: 2
     }
 
@@ -136,13 +134,13 @@ T.ComboBox {
 
         background: Rectangle {
             radius: smallRadius
-            color: dpalette.window
+            color: DPalette.window
             anchors.fill: parent
             layer.enabled: true
             layer.effect: DropShadow {
                 radius: 8
                 samples: 17
-                color: dpalette.shadow
+                color: DPalette.shadow
                 transparentBorder: true
             }
         }

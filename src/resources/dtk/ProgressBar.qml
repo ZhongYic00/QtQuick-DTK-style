@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtGraphicalEffects 1.15
+import singleton.dpalette 1.0
 
 T.ProgressBar {
     id: control
@@ -10,10 +11,8 @@ T.ProgressBar {
     padding: 2
     height: radius * (thin ? 2 : 3)
     implicitWidth: 200
-    Component.onCompleted: console.error(height)
-    DPalette {
-        id: dpalette
-    }
+
+    //    Component.onCompleted: console.error(height)
     NumberAnimation on value {
         from: 0
         to: control.value
@@ -24,7 +23,7 @@ T.ProgressBar {
     background: Rectangle {
         implicitWidth: 200
         height: parent.height
-        color: dpalette.dark
+        color: DPalette.dark
         radius: control.radius
     }
 
@@ -40,22 +39,22 @@ T.ProgressBar {
             height: parent.height
             radius: control.radius
             clip: true
-            color: dpalette.highlight
+            color: DPalette.highlight
             gradient: Gradient {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: dpalette.darkLively
+                    color: DPalette.darkLively
                 }
                 GradientStop {
                     position: 1.0
-                    color: dpalette.lightLively
+                    color: DPalette.lightLively
                 }
             }
         }
         Rectangle {
             height: parent.height
-            color: dpalette.highlight
+            color: DPalette.highlight
             gradient: Gradient {
                 orientation: Gradient.Horizontal
                 GradientStop {

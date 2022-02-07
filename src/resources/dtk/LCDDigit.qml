@@ -1,16 +1,14 @@
 import QtQuick 2.15
+import singleton.dpalette 1.0
 
 Canvas {
     implicitWidth: 30
     height: 2 * width
 
-    DPalette {
-        id: dpalette
-    }
     contextType: "2d"
     property int num: Number(numInput.text)
     onNumChanged: requestPaint()
-    Component.onCompleted: dpalette.onStyleChanged.connect(requestPaint)
+    Component.onCompleted: DPalette.onStyleChanged.connect(requestPaint)
 
     onPaint: {
         const Point = function (x, y) {
@@ -41,7 +39,7 @@ Canvas {
                 context.lineTo(padding + p.x * 0.9, 2 * padding + p.y * 0.9)
             }
 
-            context.fillStyle = dpalette.text
+            context.fillStyle = DPalette.text
             context.beginPath()
             context.moveTo(padding + stCap.x * 0.9, 2 * padding + stCap.y * 0.9)
             lineTo(stUp)
@@ -64,7 +62,7 @@ Canvas {
                 context.lineTo(padding + p.x * 0.9, 2 * padding + p.y * 0.9)
             }
 
-            context.fillStyle = dpalette.text
+            context.fillStyle = DPalette.text
             context.beginPath()
             context.moveTo(padding + stCap.x * 0.9, 2 * padding + stCap.y * 0.9)
             lineTo(stUp)
@@ -79,7 +77,7 @@ Canvas {
         context.reset()
         context.globalCompositeOperation = "destination-atop"
         context.strokeStyle = "transparent"
-        context.fillStyle = dpalette.text
+        context.fillStyle = DPalette.text
         context.lineWidth = Math.max(1, width * 0.02)
         function drawSegs(segs) {
             if (segs[0])

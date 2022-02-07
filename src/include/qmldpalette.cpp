@@ -14,7 +14,7 @@ QMLDPalette::QMLDPalette()
     updatePalette();
 }
 void QMLDPalette::updateCg(){
-//    qWarning()<<"updateCg"<<this;
+    qWarning()<<"updateCg"<<this;
     cg=(QApplication::activeWindow()!=nullptr)?DPalette::Active:DPalette::Inactive;
     emitAll();
 }

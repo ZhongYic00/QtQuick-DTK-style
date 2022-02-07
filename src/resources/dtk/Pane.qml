@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Layouts 1.12
+import singleton.dpalette 1.0
 
 T.Pane {
     id: control
@@ -10,13 +11,11 @@ T.Pane {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
     property int radius: smallRadius
-    DPalette {
-        id: dpalette
-    }
+
     padding: radius
 
     background: Rectangle {
         radius: control.radius
-        color: dpalette.itemBackground
+        color: DPalette.itemBackground
     }
 }

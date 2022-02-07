@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
+import singleton.dpalette 1.0
 
 T.Slider {
     id: control
@@ -11,9 +12,7 @@ T.Slider {
                              implicitHandleHeight + topPadding + bottomPadding)
 
     padding: 6
-    DPalette {
-        id: dpalette
-    }
+
     property double backgroundDotWidth: 2
     property double backgroundDotSpacing: 1
     property int segs: width / (backgroundDotSpacing + backgroundDotWidth)
@@ -28,7 +27,7 @@ T.Slider {
         implicitWidth: 22
         implicitHeight: 26
         radius: smallRadius
-        color: control.pressed ? dpalette.lightLively : dpalette.highlight
+        color: control.pressed ? DPalette.lightLively : DPalette.highlight
     }
 
     background: Row {
@@ -43,7 +42,7 @@ T.Slider {
             Rectangle {
                 width: backgroundDotWidth
                 height: width * 2
-                color: (index < control.value * segs) ? dpalette.highlight : dpalette.button
+                color: (index < control.value * segs) ? DPalette.highlight : DPalette.button
                 radius: 1
                 //                Component.onCompleted: console.error("slider", index, segs,
                 //                                                     index / parent.count)

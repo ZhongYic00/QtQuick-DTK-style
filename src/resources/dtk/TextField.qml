@@ -2,12 +2,11 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
+import singleton.dpalette 1.0
 
 T.TextField {
     id: control
-    DPalette {
-        id: dpalette
-    }
+
     implicitWidth: Math.max(
                        implicitBackgroundWidth + leftInset + rightInset,
                        Math.max(
@@ -22,9 +21,9 @@ T.TextField {
     leftPadding: padding + 4
     rightPadding: 36
 
-    color: dpalette.text
-    selectionColor: dpalette.highlight
-    selectedTextColor: dpalette.highlightedText
+    color: DPalette.text
+    selectionColor: DPalette.highlight
+    selectedTextColor: DPalette.highlightedText
     placeholderTextColor: Color.transparent(control.color, 0.5)
     verticalAlignment: TextInput.AlignVCenter
     selectByMouse: true
@@ -52,8 +51,8 @@ T.TextField {
         implicitHeight: 40
         radius: smallRadius
         border.width: control.activeFocus ? 2 : 1
-        color: control.activeFocus ? dpalette.light : dpalette.light
-        border.color: control.activeFocus ? dpalette.highlight : dpalette.mid
+        color: control.activeFocus ? DPalette.light : DPalette.light
+        border.color: control.activeFocus ? DPalette.highlight : DPalette.mid
     }
     RoundButton {
         anchors.verticalCenter: parent.verticalCenter
@@ -61,7 +60,7 @@ T.TextField {
         anchors.rightMargin: 10
         opacity: placeholder.visible ? 0 : 1
         icon.name: "cancel"
-        color: dpalette.base
+        color: DPalette.base
         Behavior on opacity {
             NumberAnimation {
                 duration: 150

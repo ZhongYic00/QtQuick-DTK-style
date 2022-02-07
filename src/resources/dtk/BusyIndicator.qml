@@ -1,15 +1,13 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
+import singleton.dpalette 1.0
 
 T.BusyIndicator {
     id: control
     implicitWidth: 64
     implicitHeight: 64
     property int dots: 6
-    DPalette {
-        id: dpalette
-    }
     contentItem: Item {
         id: item
         x: 0
@@ -43,7 +41,7 @@ T.BusyIndicator {
                 implicitWidth: item.width / 5
                 implicitHeight: implicitWidth
                 radius: implicitWidth / 2
-                color: dpalette.highlight
+                color: DPalette.highlight
                 transform: [
                     Translate {
                         y: -Math.min(item.width, item.height) * 0.5 + 5

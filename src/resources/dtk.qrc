@@ -17,5 +17,6 @@
         <file>dtk/LCDNumber.qml</file>
         <file>dtk/ToolTip.qml</file>
         <file>dtk/ComboBox.qml</file>
+        <file>dtk/ApplicationWindow.qml</file>
     </qresource>
 </RCC>

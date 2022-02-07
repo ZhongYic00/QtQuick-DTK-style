@@ -17,6 +17,7 @@ void importProperties(QQmlEngine* engine){
     engine->rootContext()->setContextProperty("bigRadius",18);
 
     qmlRegisterType<QMLDPalette>("QMLDPalette",1,0,"QMLDPalette");
+    qmlRegisterSingletonType(QUrl("qrc:/dtk/DPalette.qml"),"singleton.dpalette",1,0,"DPalette");
 }
 void enableQtQuickDTKStyle(QQmlEngine* engine){
     QQuickStyle::addStylePath("qrc:/dtk");

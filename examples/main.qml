@@ -6,8 +6,7 @@ import QtGraphicalEffects 1.15
 import QMLDPalette 1.0
 
 //import DGui 1.0
-Rectangle {
-    color: dpalette.base
+ApplicationWindow {
     QMLDPalette {
         id: dpalette
     }

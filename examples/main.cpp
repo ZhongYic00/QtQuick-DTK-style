@@ -38,16 +38,16 @@ int main(int argc, char* argv[])
         }
     }
 
-    DMainWindow win;
-    QQuickWidget widget;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
+    QQmlApplicationEngine win(&app);
 
-    enableQtQuickDTKStyle(widget.engine());
-    widget.setSource(url);
-    widget.setResizeMode(QQuickWidget::SizeRootObjectToView);
-    win.setCentralWidget(&widget);
+    enableQtQuickDTKStyle(&win);
+    win.load(url);
+//    win.(QQuickWidget::SizeRootObjectToView);
+//    win.setCentralWidget(&widget);
+//    win.show();
 
-    win.show();
+//    win.show();
 
     return app.exec();
 }

@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
 import QtGraphicalEffects 1.15
+import singleton.dpalette 1.0
 
 T.ToolTip {
     id: control
@@ -20,10 +21,6 @@ T.ToolTip {
 
     margins: 6
     padding: 6
-
-    DPalette {
-        id: dpalette
-    }
 
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutsideParent
                  | T.Popup.CloseOnReleaseOutsideParent
@@ -46,19 +43,19 @@ T.ToolTip {
         elide: Text.ElideRight
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         //        maximumLineCount: 3
-        color: dpalette.text
+        color: DPalette.text
         onWidthChanged: ; /*console.error(control.parent, "width", width,
-                                              implicitWidth, contentWidth,
-                                                                                    control.width)*/
+                                                                              implicitWidth, contentWidth,
+                                                                                                                                                                                                                                                                                                                                                            control.width)*/
     }
 
     background: Rectangle {
         radius: smallRadius
-        border.color: dpalette.dark
-        color: dpalette.base
+        border.color: DPalette.dark
+        color: DPalette.base
         layer.enabled: true
         layer.effect: DropShadow {
-            color: dpalette.shadow
+            color: DPalette.shadow
             verticalOffset: 0
             radius: 8
             samples: 17
