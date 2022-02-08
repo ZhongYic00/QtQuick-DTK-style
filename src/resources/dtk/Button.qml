@@ -29,6 +29,7 @@ T.Button {
         spacing: control.spacing
         mirrored: control.mirrored
         display: control.display
+        anchors.fill: parent
 
         icon: control.icon
         text: control.text
