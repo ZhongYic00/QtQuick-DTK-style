@@ -10,12 +10,13 @@ QMLDPalette::QMLDPalette()
 {
     connect(dynamic_cast<DApplication*>(DApplication::instance()),&QApplication::focusWindowChanged,this,&QMLDPalette::updateCg);
     connect(dynamic_cast<QApplication*>(QApplication::instance()),&QApplication::paletteChanged,this,&QMLDPalette::updatePalette);
+    connect(this,&QMLDPalette::activeChanged,this,&QMLDPalette::updateCg);
     updateCg();
     updatePalette();
 }
 void QMLDPalette::updateCg(){
-    qWarning()<<"updateCg"<<this;
-    cg=(QApplication::activeWindow()!=nullptr)?DPalette::Active:DPalette::Inactive;
+    qWarning()<<"updateCg"<<this<<_active;
+    cg=(QApplication::activeWindow()!=nullptr||_active)?DPalette::Active:DPalette::Inactive;
     emitAll();
 }
 void QMLDPalette::updatePalette(){

@@ -3,19 +3,16 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.15
-import QMLDPalette 1.0
+import singleton.dpalette 1.0
 
 //import DGui 1.0
 ApplicationWindow {
-    QMLDPalette {
-        id: dpalette
-    }
     //    //    property int smallRadius: 8
     //    //    property int bigRadius: 18
-    //    property color primaryColor: dpalette.highlight
+    //    property color primaryColor: DPalette.highlight
     //    id: rectangle
     //    Rectangle {
-    //        color: dpalette.button
+    //        color: DPalette.button
     //        height: 200
     //        width: height
     //        anchors.bottom: parent.bottom
@@ -95,7 +92,7 @@ ApplicationWindow {
             RowLayout {
                 Text {
                     text: qsTr("窗口特效")
-                    color: dpalette.text
+                    color: DPalette.text
                 }
                 Switch {}
             }
@@ -105,46 +102,46 @@ ApplicationWindow {
             verticalPadding: smallRadius / 2
             RowLayout {
                 RadioButton {
-                    color: dpalette.button
+                    color: DPalette.button
                 }
                 RadioButton {
-                    color: dpalette.dark
+                    color: DPalette.dark
                 }
                 RadioButton {
-                    color: dpalette.light
+                    color: DPalette.light
                 }
                 RadioButton {
-                    color: dpalette.mid
+                    color: DPalette.mid
                 }
                 RadioButton {
-                    color: dpalette.midlight
+                    color: DPalette.midlight
                 }
                 RadioButton {
-                    color: dpalette.shadow
+                    color: DPalette.shadow
                 }
                 RadioButton {
-                    color: dpalette.window
+                    color: DPalette.window
                 }
                 RadioButton {
-                    color: dpalette.windowText
+                    color: DPalette.windowText
                 }
                 RadioButton {
-                    color: dpalette.textWarning
+                    color: DPalette.textWarning
                 }
                 RadioButton {
-                    color: dpalette.obviousBackground
+                    color: DPalette.obviousBackground
                 }
                 RadioButton {
-                    color: dpalette.frameShadowBorder
+                    color: DPalette.frameShadowBorder
                 }
                 RadioButton {
-                    color: dpalette.textTips
+                    color: DPalette.textTips
                 }
                 RadioButton {
-                    color: dpalette.textTitle
+                    color: DPalette.textTitle
                 }
                 RadioButton {
-                    color: dpalette.placeholderText
+                    color: DPalette.placeholderText
                 }
                 anchors.centerIn: parent
             }
@@ -216,8 +213,8 @@ ApplicationWindow {
         }
         Label {
             text: qsTr("hello")
-            color: dpalette.windowText
-            //palette: dpalette
+            color: DPalette.windowText
+            //palette: DPalette
         }
         Dial {}
     }
@@ -235,7 +232,7 @@ ApplicationWindow {
     //            x: parent.leftPadding
     //            y: parent.height / 2 - height / 2
     //            radius: 3
-    //            border.color: checkbox.down ? dpalette.lightLively : dpalette.midlight
+    //            border.color: checkbox.down ? DPalette.lightLively : DPalette.midlight
 
     //            Rectangle {
     //                width: 14
@@ -243,7 +240,7 @@ ApplicationWindow {
     //                x: 6
     //                y: 6
     //                radius: 2
-    //                color: checkbox.down ? dpalette.lightLively : dpalette.midlight
+    //                color: checkbox.down ? DPalette.lightLively : DPalette.midlight
     //                visible: checkbox.checked
     //            }
     //        }
@@ -252,7 +249,7 @@ ApplicationWindow {
     //            text: checkbox.text
     //            font: checkbox.font
     //            opacity: enabled ? 1.0 : 0.3
-    //            color: checkbox.down ? dpalette.darkLively : dpalette.lightLively
+    //            color: checkbox.down ? DPalette.darkLively : DPalette.lightLively
     //            verticalAlignment: Text.AlignVCenter
     //            leftPadding: checkbox.indicator.width + checkbox.spacing
     //        }
@@ -268,8 +265,8 @@ ApplicationWindow {
     //                implicitWidth: 200
     //                implicitHeight: 200
     //                radius: bigRadius
-    //                color: dpalette.shadow
-    //                border.color: dpalette.dark
+    //                color: DPalette.shadow
+    //                border.color: DPalette.dark
     //                border.width: 1
     //                layer.enabled: true
     //                layer.effect: GaussianBlur {

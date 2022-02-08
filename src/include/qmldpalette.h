@@ -7,6 +7,7 @@
 DGUI_USE_NAMESPACE
 class QMLDPalette:public QObject{
     Q_OBJECT
+    Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(QColor windowText READ windowText NOTIFY windowTextChanged)
     Q_PROPERTY(QColor button READ button NOTIFY buttonChanged)
     Q_PROPERTY(QColor light READ light NOTIFY lightChanged)
@@ -43,6 +44,8 @@ class QMLDPalette:public QObject{
     Q_PROPERTY(QColor NColorTypes READ NColorTypes NOTIFY NColorTypesChanged)
 public:
     QMLDPalette();
+    inline bool active() const{ return _active; }
+    inline void setActive(bool b){_active=b;emit activeChanged();}
     inline QColor windowText() const{ return palette.color(cg,DPalette::WindowText);}
     inline QColor button() const{ return palette.color(cg,DPalette::Button);}
     inline QColor light() const{ return palette.color(cg,DPalette::Light);}
@@ -78,6 +81,7 @@ public:
     inline QColor obviousBackground() const{ return palette.color(cg,DPalette::ObviousBackground);}
     inline QColor NColorTypes() const{ return palette.color(cg,DPalette::NColorTypes);}
 signals:
+    void activeChanged();
     void windowTextChanged();
     void buttonChanged();
     void lightChanged();
@@ -119,6 +123,7 @@ public slots:
 private:
     DPalette palette;
     DPalette::ColorGroup cg;
+    bool _active=false;
 
     void emitAll();
 };
