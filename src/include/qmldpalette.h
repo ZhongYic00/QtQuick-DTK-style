@@ -43,6 +43,11 @@ class QMLDPalette:public QObject{
     Q_PROPERTY(QColor obviousBackground READ obviousBackground NOTIFY obviousBackgroundChanged)
     Q_PROPERTY(QColor NColorTypes READ NColorTypes NOTIFY NColorTypesChanged)
 public:
+    enum ThemeType{
+        Light,Dark,System
+    };
+    Q_ENUM(ThemeType)
+
     QMLDPalette();
     inline bool active() const{ return _active; }
     inline void setActive(bool b){_active=b;emit activeChanged();}
@@ -80,6 +85,8 @@ public:
     inline QColor frameShadowBorder() const{ return palette.color(cg,DPalette::FrameShadowBorder);}
     inline QColor obviousBackground() const{ return palette.color(cg,DPalette::ObviousBackground);}
     inline QColor NColorTypes() const{ return palette.color(cg,DPalette::NColorTypes);}
+
+    Q_INVOKABLE void changeApplicationTheme(ThemeType);
 signals:
     void activeChanged();
     void windowTextChanged();

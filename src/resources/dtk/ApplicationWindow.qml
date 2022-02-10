@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
+import QtQuick.Layouts 1.12
 import QtQuick.Templates 2.12 as T
 import singleton.dpalette 1.0
 
@@ -34,11 +35,12 @@ T.ApplicationWindow {
         height: bigRadius
         width: parent.width
     }
+    property var titlebarContent: Item {}
 
-    Component.onCompleted: {
-        console.warn("titlebar", titlebar, titlebar.height, contentItem,
-                     contentItem.y, contentItem.height, width, height)
-    }
+    //    Component.onCompleted: {
+    //        console.warn("titlebar", titlebar, titlebar.height, contentItem,
+    //                     contentItem.y, contentItem.height, width, height)
+    //    }
     background: Rectangle {
         anchors.fill: parent
         radius: bigRadius
@@ -50,11 +52,25 @@ T.ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
 
-            cursorShape: Qt.SizeBDiagCursor
+            cursorShape: Qt.SizeFDiagCursor
             acceptedButtons: Qt.LeftButton
             pressAndHoldInterval: 100
             onPressAndHold: {
                 window.startSystemResize(Qt.BottomEdge | Qt.RightEdge)
+            }
+        }
+        MouseArea {
+            id: resizeareaLB
+            width: bigRadius
+            height: bigRadius
+            anchors.bottom: parent.bottom
+            anchors.right: parent.left
+
+            cursorShape: Qt.SizeBDiagCursor
+            acceptedButtons: Qt.LeftButton
+            pressAndHoldInterval: 100
+            onPressAndHold: {
+                window.startSystemResize(Qt.BottomEdge | Qt.LeftEdge)
             }
         }
         Rectangle {
@@ -106,6 +122,15 @@ T.ApplicationWindow {
                 }
             }
 
+            Item {
+                id: titlebarContentArea
+                anchors.left: applicationIcon.right
+                anchors.right: buttonBox.left
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
+                children: titlebarContent
+                clip: true
+            }
             Row {
                 id: buttonBox
                 anchors.right: parent.right
@@ -128,8 +153,31 @@ T.ApplicationWindow {
                     }
                     Menu {
                         id: applicationMenu
-                        MenuItem {
-                            text: qsTr('about')
+                        Action {
+                            text: qsTr('About')
+                        }
+                        MenuSeparator {}
+                        Menu {
+                            title: qsTr('Theme')
+                            Action {
+                                text: qsTr('light')
+                                onTriggered: DPalette.changeApplicationTheme(
+                                                 DPalette.Light)
+                            }
+                            Action {
+                                text: qsTr('dark')
+                                onTriggered: DPalette.changeApplicationTheme(
+                                                 DPalette.Dark)
+                            }
+                            Action {
+                                text: qsTr('system')
+                                onTriggered: DPalette.changeApplicationTheme(
+                                                 DPalette.System)
+                            }
+                        }
+                        Action {
+                            text: qsTr('Quit')
+                            onTriggered: window.close()
                         }
                     }
                 }
@@ -146,6 +194,23 @@ T.ApplicationWindow {
                                                                           0, 0)
                     }
                     onReleased: window.showMinimized()
+                }
+                Button {
+                    height: parent.height
+                    width: height
+                    icon.name: window.visibility
+                               == Window.Maximized ? "window-normalize" : "window-maximize"
+                    icon.height: 32
+                    icon.width: 32
+                    icon.color: DPalette.text
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: parent.hovered ? DPalette.shadow : Qt.rgba(0, 0,
+                                                                          0, 0)
+                    }
+                    onReleased: window.visibility
+                                == Window.Maximized ? window.showNormal(
+                                                          ) : window.showMaximized()
                 }
                 Button {
                     height: parent.height

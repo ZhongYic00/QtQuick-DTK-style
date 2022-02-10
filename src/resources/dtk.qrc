@@ -18,5 +18,8 @@
         <file>dtk/ToolTip.qml</file>
         <file>dtk/ComboBox.qml</file>
         <file>dtk/ApplicationWindow.qml</file>
+        <file>dtk/Popup.qml</file>
+        <file>dtk/Menu.qml</file>
+        <file>dtk/MenuSeparator.qml</file>
     </qresource>
 </RCC>

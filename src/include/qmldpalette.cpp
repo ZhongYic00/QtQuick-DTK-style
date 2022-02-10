@@ -3,6 +3,7 @@
 #include <QWindow>
 #include <DApplication>
 #include <DGuiApplicationHelper>
+#include <DPlatformTheme>
 
 DWIDGET_USE_NAMESPACE
 DGUI_USE_NAMESPACE
@@ -15,12 +16,12 @@ QMLDPalette::QMLDPalette()
     updatePalette();
 }
 void QMLDPalette::updateCg(){
-    qWarning()<<"updateCg"<<this<<_active;
+    qDebug()<<"updateCg"<<this<<_active;
     cg=(QApplication::activeWindow()!=nullptr||_active)?DPalette::Active:DPalette::Inactive;
     emitAll();
 }
 void QMLDPalette::updatePalette(){
-//    qWarning()<<"updatePalette"<<this;
+    qDebug()<<"updatePalette"<<this;
     palette=DGuiApplicationHelper::instance()->applicationPalette();
     emitAll();
 }
@@ -62,4 +63,22 @@ void QMLDPalette::emitAll(){
     emit frameShadowBorderChanged();
     emit obviousBackgroundChanged();
     emit NColorTypesChanged();
+}
+
+void QMLDPalette::changeApplicationTheme(QMLDPalette::ThemeType theme){
+    qDebug()<<"changeTheme"<<theme;
+    switch(theme) {
+        case Light:
+            DGuiApplicationHelper::instance()->setPaletteType(DGuiApplicationHelper::LightType);
+            break;
+        case Dark:
+            DGuiApplicationHelper::instance()->setPaletteType(DGuiApplicationHelper::DarkType);
+            break;
+        case System:
+            DGuiApplicationHelper::instance()->setPaletteType(DGuiApplicationHelper::UnknownType);
+            break;
+        default:
+            qWarning()<<"theme must be one of enum [Light,Dark,System]";
+            break;
+    }
 }

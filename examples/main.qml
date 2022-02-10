@@ -46,6 +46,11 @@ ApplicationWindow {
     //        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
     //        Layout.margins: 5
     //    }
+    titlebarContent: TextField {
+        width: Math.min(parent.width, 350)
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+    }
     TextField {
         id: numInput
         text: "0"
