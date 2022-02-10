@@ -41,7 +41,7 @@ T.Menu {
 
     background: Rectangle {
         radius: smallRadius
-        color: DPalette.window
+        color: Color.transparent(DPalette.window, 0.9)
         anchors.fill: parent
         border.color: DPalette.frameBorder
         border.width: 1
@@ -52,13 +52,38 @@ T.Menu {
             color: DPalette.frameShadowBorder
             transparentBorder: true
         }
+        ShaderEffectSource {
+            function getRect() {
+                console.log(x, y, width, height, sourceItem,
+                            mapToItem(sourceItem, x, y),
+                            control.parent.mapToGlobal(control.x, control.y))
+                return mapToItem(sourceItem, Qt.rect(x, y, width, height))
+            }
+            id: effectsource
+            anchors.fill: parent
+
+            sourceItem: ApplicationWindow.window ? ApplicationWindow.window.contentItem : null
+
+            sourceRect: getRect()
+            onSourceRectChanged: console.warn('window', sourceItem, sourceRect,
+                                              control.x, control.y,
+                                              control.width, control.height,
+                                              blur.width, blur.height)
+        }
+        FastBlur {
+            id: blur
+            anchors.fill: parent
+            source: effectsource
+            radius: 32
+            transparentBorder: false
+        }
     }
 
     //    T.Overlay.modal: Rectangle {
-    //        color: Color.transparent(control.palette.shadow, 0.5)
+    //        color: Color.transparent(control.palette.shadow, 0.8)
     //    }
 
     //    T.Overlay.modeless: Rectangle {
-    //        color: Color.transparent(control.palette.shadow, 0.12)
+    //        color: Color.transparent(control.palette.shadow, 0.8)
     //    }
 }
