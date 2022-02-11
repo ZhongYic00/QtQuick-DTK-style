@@ -174,48 +174,39 @@ ApplicationWindow {
                 Layout.alignment: Qt.AlignRight
             }
         }
-        //        TabBar {
-        //            height: 24
-        //            Layout.fillWidth: true
-        //            Component.onCompleted: console.error("tabbar", width)
-        //            TabButton {
-        //                text: qsTr("Home")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Discover")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Activity")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Home")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Discover")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Activity")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Homeeeeeeeeeeeeeeeeee")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Discover")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Activity")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Home")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Discover")
-        //            }
-        //            TabButton {
-        //                text: qsTr("Activity")
-        //            }
-        //            Layout.preferredWidth: parent.width
-        //        }
+        TabBar {
+            height: 24
+            Layout.fillWidth: true
+            Component.onCompleted: console.error("tabbar", width)
+            TabButton {
+                text: qsTr("Home")
+            }
+            TabButton {
+                text: qsTr("Discover")
+            }
+            TabButton {
+                text: qsTr("Activity")
+            }
+            TabButton {
+                text: qsTr("Home")
+            }
+            TabButton {
+                text: qsTr("Discover")
+            }
+            TabButton {
+                text: qsTr("Activity")
+            }
+            TabButton {
+                text: qsTr("Homeeeeeeeeeeeeeeeeee")
+            }
+            TabButton {
+                text: qsTr("Discover")
+            }
+            TabButton {
+                text: qsTr("Activity")
+            }
+            Layout.preferredWidth: parent.width
+        }
         TextField {
             placeholderText: "0ssssssssssssssss0"
             ToolTip.text: "test tip"

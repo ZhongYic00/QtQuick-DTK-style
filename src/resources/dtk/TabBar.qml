@@ -15,16 +15,21 @@ T.TabBar {
 
     spacing: smallRadius
     property bool isScrollEnabled: true
+    function isViewFitIn() {
+        return view.contentWidth > control.width
+    }
 
-    contentItem: RowLayout {
-        Component.onCompleted: console.error("row", width, height, x, y)
+    contentItem: Item {
+        anchors.fill: parent
 
+        //        Component.onCompleted: console.log("TabBar", width, height, x, y)
         Button {
-            Layout.alignment: Qt.AlignLeft
+            id: leftButton
+            anchors.left: parent.left
             width: visible ? height : 0
             icon.name: "go-previous"
             enabled: view.contentX > view.originX
-            visible: view.contentWidth > view.width
+            visible: view.contentWidth > control.width
             Timer {
                 id: timerL
                 interval: 50
@@ -47,12 +52,14 @@ T.TabBar {
                 view.contentX = Math.max(view.contentX, view.originX)
             }
             id: view
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.minimumWidth: control.width - height * 2
-            Layout.fillHeight: true
+            height: parent.height
+            anchors.left: leftButton.right
+            anchors.right: rightButton.left
+            anchors.leftMargin: spacing
+            anchors.rightMargin: spacing
             model: control.contentModel
             currentIndex: control.currentIndex
+            implicitWidth: contentWidth
 
             Component.onCompleted: console.error("listview", width,
                                                  height, x, y)
@@ -66,15 +73,11 @@ T.TabBar {
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 1000
             highlightRangeMode: ListView.NoHighlightRange
-            preferredHighlightBegin: 40
-            preferredHighlightEnd: width - 40
             contentWidth: contentItem.childrenRect.width
             MouseArea {
                 anchors.fill: parent
                 enabled: control.isScrollEnabled
                 onWheel: {
-                    //                    console.error("view", parent.contentX, parent.contentWidth,
-                    //                                  parent.width, parent.originX)
                     let scrollSpeed = 30
                     if (wheel.angleDelta.y > 0) {
                         decrementCurrentIndex()
@@ -91,11 +94,12 @@ T.TabBar {
             }
         }
         Button {
-            Layout.alignment: Qt.AlignRight
+            id: rightButton
+            anchors.right: parent.right
             width: visible ? height : 0
             icon.name: "go-next"
             enabled: view.contentX < view.originX + view.contentWidth - view.width
-            visible: view.contentWidth > view.width
+            visible: view.contentWidth > control.width
             Timer {
                 id: timerR
                 interval: 50
@@ -112,6 +116,6 @@ T.TabBar {
     }
 
     background: Rectangle {
-        color: DPalette.base
+        color: "transparent"
     }
 }
