@@ -142,12 +142,7 @@ T.ApplicationWindow {
                     icon.name: "application-menu"
                     icon.height: 32
                     icon.width: 32
-                    icon.color: pressed ? DPalette.highlight : DPalette.text
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: parent.hovered ? DPalette.shadow : Qt.rgba(0, 0,
-                                                                          0, 0)
-                    }
+                    flat: true
                     onReleased: {
                         applicationMenu.popup(0, height)
                     }
@@ -187,12 +182,7 @@ T.ApplicationWindow {
                     icon.name: "window-minimize"
                     icon.height: 32
                     icon.width: 32
-                    icon.color: DPalette.text
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: parent.hovered ? DPalette.shadow : Qt.rgba(0, 0,
-                                                                          0, 0)
-                    }
+                    flat: true
                     onReleased: window.showMinimized()
                 }
                 Button {
@@ -202,12 +192,7 @@ T.ApplicationWindow {
                                == Window.Maximized ? "window-normalize" : "window-maximize"
                     icon.height: 32
                     icon.width: 32
-                    icon.color: DPalette.text
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: parent.hovered ? DPalette.shadow : Qt.rgba(0, 0,
-                                                                          0, 0)
-                    }
+                    flat: true
                     onReleased: window.visibility
                                 == Window.Maximized ? window.showNormal(
                                                           ) : window.showMaximized()
@@ -218,12 +203,7 @@ T.ApplicationWindow {
                     icon.name: "window-close"
                     icon.height: 32
                     icon.width: 32
-                    icon.color: DPalette.text
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: parent.hovered ? DPalette.shadow : Qt.rgba(0, 0,
-                                                                          0, 0)
-                    }
+                    flat: true
                     onReleased: window.close()
                 }
             }

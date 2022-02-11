@@ -64,10 +64,27 @@ ApplicationWindow {
         //        }
         RoundButton {}
 
-        Button {
-            id: button
-            text: qsTr("button")
-            //            onClicked: popup.open()
+        Row {
+            spacing: bigRadius
+            Button {
+                text: qsTr('normal')
+            }
+
+            Button {
+                text: qsTr('highlighted')
+                highlighted: true
+            }
+
+            Button {
+                id: button
+                text: qsTr('flat')
+                flat: true
+            }
+            Button {
+                text: qsTr('highlighted&&flat')
+                highlighted: true
+                flat: true
+            }
         }
         Switch {}
 
