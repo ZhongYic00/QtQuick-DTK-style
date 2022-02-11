@@ -18,6 +18,7 @@ T.Menu {
     overlap: 1
     topPadding: smallRadius
     bottomPadding: smallRadius
+    clip: true
 
     delegate: MenuItem {
         contentItem: Text {
@@ -26,6 +27,14 @@ T.Menu {
         }
         background: Rectangle {
             color: parent.highlighted ? DPalette.highlight : "transparent"
+            layer.enabled: true
+            layer.effect: DropShadow {
+                radius: smallRadius
+                samples: 17
+                verticalOffset: smallRadius / 2
+                color: Color.transparent(DPalette.highlight, 0.5)
+                transparentBorder: true
+            }
         }
         arrow: ColorImage {
             x: parent.mirrored ? parent.leftPadding : parent.width - width - parent.rightPadding
