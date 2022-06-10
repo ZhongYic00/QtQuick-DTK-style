@@ -12,15 +12,6 @@
 #include "qmldpalette.h"
 
 DWIDGET_USE_NAMESPACE
-void importProperties(QQmlEngine* engine){
-    engine->rootContext()->setContextProperty("smallRadius",8);
-    engine->rootContext()->setContextProperty("bigRadius",18);
-
-    qmlRegisterType<QMLDPalette>("QMLDPalette",1,0,"QMLDPalette");
-    qmlRegisterSingletonType(QUrl("qrc:/dtk/DPalette.qml"),"singleton.dpalette",1,0,"DPalette");
-}
-void enableQtQuickDTKStyle(QQmlEngine* engine){
-    QQuickStyle::addStylePath("qrc:/dtk");
-    importProperties(engine);
-}
+void importProperties(QQmlEngine* engine);
+void enableQtQuickDTKStyle(QQmlEngine* engine);
 #endif // QTQUICKDTK_H
