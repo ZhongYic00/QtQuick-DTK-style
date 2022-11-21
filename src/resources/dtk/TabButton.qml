@@ -11,11 +11,15 @@ T.TabButton {
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
-    width: contentItem.implicitWidth + leftPadding + rightPadding
 
+    width: contentItem.implicitWidth + leftPadding + rightPadding
     horizontalPadding: smallRadius
     verticalPadding: smallRadius / 2
-    Component.onCompleted: width = Math.min(width, 120)
+    Component.onCompleted: {
+        console.warn('tabbutton', width, implicitBackgroundWidth,
+                     implicitContentWidth, implicitWidth, leftPadding)
+        width = Math.min(width, 120)
+    }
 
     icon.width: 24
     icon.height: 24
@@ -23,7 +27,41 @@ T.TabButton {
                 || control.highlighted ? DPalette.highlightedText : control.flat
                                          && !control.down ? (control.visualFocus ? DPalette.highlight : DPalette.windowText) : control.down ? DPalette.highlight : DPalette.buttonText
 
-    contentItem: IconLabel {
+    contentItem:
+        /*Item {
+        implicitWidth: 80
+        implicitHeight: Math.max(textlabel.implicitHeight,
+                                 iconimg.implicitHeight)
+        clip: true
+        Component.onCompleted: console.warn('row', width, height,
+                                            implicitHeight)
+        IconImage {
+            id: iconimg
+            anchors.verticalCenter: parent.verticalCenter
+            source: icon.source
+            name: icon.name
+            width: icon.width
+            height: icon.height
+            color: icon.color
+            visible: source.length || name.length
+        }
+        Text {
+            id: textlabel
+            anchors.left: iconimg.right
+            anchors.right: parent.right
+            Component.onCompleted: console.warn('text', width, height,
+                                                implicitHeight)
+            text: control.text
+            elide: Text.ElideRight
+            font.pixelSize: bigRadius
+            color: control.checked
+                   || control.highlighted ? DPalette.highlightedText : control.flat
+                                            && !control.down ? (control.visualFocus ? DPalette.highlight : DPalette.windowText) : control.down ? DPalette.highlight : DPalette.buttonText
+        }
+        ToolTip.visible: textlabel.truncated && hovered
+        ToolTip.text: text
+    }*/
+        IconLabel {
         spacing: control.spacing
         mirrored: control.mirrored
         display: control.display

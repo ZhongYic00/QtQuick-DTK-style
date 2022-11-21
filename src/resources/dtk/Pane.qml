@@ -15,6 +15,8 @@ T.Pane {
     padding: radius
 
     background: Rectangle {
+        height: control.height
+        width: control.width
         radius: control.radius
         color: DPalette.itemBackground
     }
