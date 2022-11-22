@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
-import singleton.dpalette 1.0
+import DPalette 1.0
 
 T.TabButton {
     id: control

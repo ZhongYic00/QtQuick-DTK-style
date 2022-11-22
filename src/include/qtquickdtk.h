@@ -9,7 +9,6 @@
 #include <DGuiApplicationHelper>
 #include <DPlatformTheme>
 #include <iostream>
-#include "qmldpalette.h"
 
 DWIDGET_USE_NAMESPACE
 void importProperties(QQmlEngine* engine);

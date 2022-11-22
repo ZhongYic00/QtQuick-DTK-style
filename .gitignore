@@ -1,1 +1,6 @@
 *.pro.user
+# vsc
+.vscode/
+# xmake
+.xmake/
+build/

@@ -1,5 +1,5 @@
 import QtQuick 2.15
-import singleton.dpalette 1.0
+import DPalette 1.0
 
 Canvas {
     implicitWidth: 30

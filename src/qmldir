@@ -1,0 +1,3 @@
+module DPalette
+#singleton DPaletteWrapper 1.0 DPaletteWrapper.qml
+plugin dpalette

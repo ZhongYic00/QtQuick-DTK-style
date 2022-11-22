@@ -1,0 +1,11 @@
+add_rules("mode.debug", "mode.release")
+add_requires("dtkcore", "dtkgui", "dtkwidget","qt5widgets","Qt5QuickControls2",{ system = true})
+
+target("example")
+    add_packages("dtkcore","dtkgui","dtkwidget","qt5widgets","Qt5QuickControls2")
+    add_rules("qt.quickapp")
+    add_files("*.cpp")
+    add_files("dtk/include/*.cpp")
+    add_files("dtk/include/*.h")
+    add_files("*.qrc")
+    add_files("dtk/resources/*.qrc")

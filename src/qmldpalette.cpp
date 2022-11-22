@@ -1,7 +1,7 @@
-#include "qmldpalette.h"
+#include "qmldpalette.hpp"
 #include <QApplication>
-#include <QWindow>
 #include <DApplication>
+#include <QWindow>
 #include <DGuiApplicationHelper>
 #include <DPlatformTheme>
 
@@ -9,6 +9,7 @@ DWIDGET_USE_NAMESPACE
 DGUI_USE_NAMESPACE
 QMLDPalette::QMLDPalette()
 {
+    qWarning()<<"QMLDPalette()";
     connect(dynamic_cast<DApplication*>(DApplication::instance()),&QApplication::focusWindowChanged,this,&QMLDPalette::updateCg);
     connect(dynamic_cast<QApplication*>(QApplication::instance()),&QApplication::paletteChanged,this,&QMLDPalette::updatePalette);
     connect(this,&QMLDPalette::activeChanged,this,&QMLDPalette::updateCg);

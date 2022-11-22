@@ -3,10 +3,12 @@
 
 #include <QObject>
 #include <DPalette>
+#include <QtQml/qqml.h>
 
 DGUI_USE_NAMESPACE
 class QMLDPalette:public QObject{
     Q_OBJECT
+    QML_SINGLETON
     Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(QColor windowText READ windowText NOTIFY windowTextChanged)
     Q_PROPERTY(QColor button READ button NOTIFY buttonChanged)
@@ -42,6 +44,7 @@ class QMLDPalette:public QObject{
     Q_PROPERTY(QColor frameShadowBorder READ frameShadowBorder NOTIFY frameShadowBorderChanged)
     Q_PROPERTY(QColor obviousBackground READ obviousBackground NOTIFY obviousBackgroundChanged)
     Q_PROPERTY(QColor NColorTypes READ NColorTypes NOTIFY NColorTypesChanged)
+    QML_NAMED_ELEMENT(DPalette)
 public:
     enum ThemeType{
         Light,Dark,System
@@ -134,5 +137,7 @@ private:
 
     void emitAll();
 };
+
+QML_DECLARE_TYPE(QMLDPalette)
 
 #endif // QMLDPALETTE_H
