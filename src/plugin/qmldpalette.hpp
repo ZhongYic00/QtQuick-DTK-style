@@ -2,10 +2,15 @@
 #define QMLDPALETTE_H
 
 #include <QObject>
-#include <DPalette>
 #include <QtQml/qqml.h>
-
+#include <QApplication>
+#ifdef DTKNATIVE
+#include <DPalette>
 DGUI_USE_NAMESPACE
+#else
+#include "dpalette.hpp" 
+#endif
+
 class QMLDPalette:public QObject{
     Q_OBJECT
     QML_SINGLETON
@@ -136,6 +141,7 @@ private:
     bool _active=false;
 
     void emitAll();
+    inline QGuiApplication* instance(){return dynamic_cast<QGuiApplication*>(QApplication::instance());}
 };
 
 QML_DECLARE_TYPE(QMLDPalette)

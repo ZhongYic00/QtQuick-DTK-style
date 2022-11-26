@@ -21,5 +21,6 @@
         <file>dtk/Popup.qml</file>
         <file>dtk/Menu.qml</file>
         <file>dtk/MenuSeparator.qml</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

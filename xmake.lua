@@ -1,15 +1,29 @@
-includes("examples")
 add_rules("mode.debug", "mode.release")
 add_requires("dtkcore", "dtkgui", "dtkwidget","qt5widgets",{ system = true})
 
 target("dpalette")
     add_packages("dtkcore","dtkgui","dtkwidget","qt5widgets")
     add_rules("qt.qmlplugin")
-    add_files("src/*.hpp")
-    add_files("src/*.cpp")
+    if has_package("dtkcore","dtkgui","dtkwidget") then
+        -- add_defines("DTKNATIVE")
+        print("added define DTKNATIVE")
+    end
+    add_files("src/plugin/*.cpp")
+    add_files("src/plugin/*.hpp")
     set_values("qt.qmlplugin.import_name", "DPalette")
     set_values("qt.qmlplugin.qmldirfile", "src/qmldir")
+    after_build(function (target)
+        print('target-dir',path.join(target:get("targetdir"),"dtk"))
+        os.cp("src/dtk/",path.join(target:get("targetdir"),"dtk"))
+    end)
 
+target("dtk")
+    add_rules("qt.qrc")
+    add_packages("QtCore")
+    add_deps("dpalette")
+    add_files("src/dtk.qrc")
+
+includes("examples/xmake.lua")
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --

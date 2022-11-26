@@ -14,7 +14,7 @@
 #include <QTranslator>
 #include <QDir>
 #include <QQuickItem>
-#include "dtk/include/qtquickdtk.h"
+#include "qtquickdtk.h"
 
 DWIDGET_USE_NAMESPACE
 int main(int argc, char* argv[])

@@ -1,20 +1,26 @@
 #include "qmldpalette.hpp"
-#include <QApplication>
-#include <DApplication>
 #include <QWindow>
+
+#ifdef DTKNATIVE
+#include <DApplication>
 #include <DGuiApplicationHelper>
 #include <DPlatformTheme>
-
 DWIDGET_USE_NAMESPACE
 DGUI_USE_NAMESPACE
+#endif
+
 QMLDPalette::QMLDPalette()
 {
     qWarning()<<"QMLDPalette()";
-    connect(dynamic_cast<DApplication*>(DApplication::instance()),&QApplication::focusWindowChanged,this,&QMLDPalette::updateCg);
-    connect(dynamic_cast<QApplication*>(QApplication::instance()),&QApplication::paletteChanged,this,&QMLDPalette::updatePalette);
+    connect(instance(),&QApplication::focusWindowChanged,this,&QMLDPalette::updateCg);
+    connect(instance(),&QApplication::paletteChanged,this,&QMLDPalette::updatePalette);
     connect(this,&QMLDPalette::activeChanged,this,&QMLDPalette::updateCg);
     updateCg();
     updatePalette();
+    qDebug()<<"Color Types"<<DPalette::NoType<<','<<DPalette::NColorTypes;
+    for(int i=DPalette::NoType;i<DPalette::NColorTypes;i++){
+        qDebug()<<"Color "<<DPalette::ColorType(i)<<": "<<palette.color(cg,DPalette::ColorType(i));
+    }
 }
 void QMLDPalette::updateCg(){
     qDebug()<<"updateCg"<<this<<_active;
@@ -23,7 +29,11 @@ void QMLDPalette::updateCg(){
 }
 void QMLDPalette::updatePalette(){
     qDebug()<<"updatePalette"<<this;
+#ifdef DTKNATIVE
     palette=DGuiApplicationHelper::instance()->applicationPalette();
+#else
+    palette=instance()->palette();
+#endif
     emitAll();
 }
 void QMLDPalette::emitAll(){
@@ -68,6 +78,7 @@ void QMLDPalette::emitAll(){
 
 void QMLDPalette::changeApplicationTheme(QMLDPalette::ThemeType theme){
     qDebug()<<"changeTheme"<<theme;
+#ifdef DTKNATIVE
     switch(theme) {
         case Light:
             DGuiApplicationHelper::instance()->setPaletteType(DGuiApplicationHelper::LightType);
@@ -82,4 +93,5 @@ void QMLDPalette::changeApplicationTheme(QMLDPalette::ThemeType theme){
             qWarning()<<"theme must be one of enum [Light,Dark,System]";
             break;
     }
+#endif
 }

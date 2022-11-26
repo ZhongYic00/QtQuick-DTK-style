@@ -1,3 +1,26 @@
 module DPalette
-#singleton DPaletteWrapper 1.0 DPaletteWrapper.qml
+
 plugin dpalette
+typeinfo plugin.qmltypes
+
+LCDDigit 1.0 dtk/LCDDigit.qml
+SpinBox 1.0 dtk/SpinBox.qml
+TabBar 1.0 dtk/TabBar.qml
+RoundButton 1.0 dtk/RoundButton.qml
+Button 1.0 dtk/Button.qml
+TextField 1.0 dtk/TextField.qml
+DPalette 1.0 dtk/DPalette.qml
+RadioButton 1.0 dtk/RadioButton.qml
+ProgressBar 1.0 dtk/ProgressBar.qml
+TabButton 1.0 dtk/TabButton.qml
+Slider 1.0 dtk/Slider.qml
+BusyIndicator 1.0 dtk/BusyIndicator.qml
+Switch 1.0 dtk/Switch.qml
+Pane 1.0 dtk/Pane.qml
+LCDNumber 1.0 dtk/LCDNumber.qml
+ToolTip 1.0 dtk/ToolTip.qml
+ComboBox 1.0 dtk/ComboBox.qml
+ApplicationWindow 1.0 dtk/ApplicationWindow.qml
+Popup 1.0 dtk/Popup.qml
+Menu 1.0 dtk/Menu.qml
+MenuSeparator 1.0 dtk/MenuSeparator.qml
