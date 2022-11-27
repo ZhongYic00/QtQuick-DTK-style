@@ -17,12 +17,6 @@ target("dpalette")
         os.cp("src/dtk/",path.join(target:get("targetdir"),"dtk"))
     end)
 
-target("dtk")
-    add_rules("qt.qrc")
-    add_packages("QtCore")
-    add_deps("dpalette")
-    add_files("src/dtk.qrc")
-
 includes("examples/xmake.lua")
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
