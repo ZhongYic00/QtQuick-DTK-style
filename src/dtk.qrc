@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
+        <file>qmldir</file>
         <file>dtk/LCDDigit.qml</file>
         <file>dtk/SpinBox.qml</file>
         <file>dtk/TabBar.qml</file>
