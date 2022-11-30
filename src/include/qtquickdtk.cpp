@@ -8,7 +8,8 @@ void importProperties(QQmlEngine* engine){
 }
 
 void enableQtQuickDTKStyle(QQmlEngine* engine){
-    QQuickStyle::addStylePath("qrc:/dtk");
+    engine->addImportPath("qrc:/DPalette");
+    QQuickStyle::addStylePath("qrc:/DPalette/dtk");
     importProperties(engine);
     qWarning()<<"enableQtQuickDTKStyle:: styles"<<QQuickStyle::stylePathList()<<QQuickStyle::name();
 }

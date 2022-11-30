@@ -9,6 +9,7 @@ target("example-cpp")
     add_files("*.qrc")
     add_files("$(projectdir)/src/include/*.cpp|h")
     add_includedirs("$(projectdir)/src/include")
+    add_files("$(projectdir)/src/dtk.qrc")
 
 target("example-python")
     set_kind("phony")

@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/DPalette">
         <file>qmldir</file>
         <file>dtk/LCDDigit.qml</file>
         <file>dtk/SpinBox.qml</file>
