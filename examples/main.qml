@@ -54,6 +54,11 @@ ApplicationWindow {
     TextField {
         id: numInput
         text: "0"
+        color: acceptableInput ? DPalette.text : DPalette.textWarning
+        validator: IntValidator {
+            bottom: 0
+            top: 100
+        }
     }
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter

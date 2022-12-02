@@ -51,8 +51,8 @@ T.TextField {
         implicitHeight: 40
         radius: smallRadius
         border.width: control.activeFocus ? 2 : 1
-        color: control.activeFocus ? DPalette.light : DPalette.light
-        border.color: control.activeFocus ? DPalette.highlight : DPalette.mid
+        color: control.activeFocus ?DPalette.light : DPalette.light
+        border.color: control.activeFocus ?  (!control.acceptableInput?DPalette.textWarning:DPalette.highlight) : DPalette.mid
     }
     RoundButton {
         anchors.verticalCenter: parent.verticalCenter
